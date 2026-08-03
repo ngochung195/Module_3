@@ -1,0 +1,5 @@
+Trước khi tối ưu, do vi phạm tính SARGable và thiếu Index, cột type hiển thị giá trị ALL, buộc MySQL phải thực hiện Full Table Scan. Chỉ số rows chạm mốc khoảng 5.000.000 dòng, tức hệ thống phải đọc và tính toán trên toàn bộ dữ liệu của bảng, gây nghẽn I/O và nghẽn CPU nghiêm trọng.
+
+Sau khi thêm Composite Index (transaction_type, created_at) và đưa điều kiện thời gian về dạng lọc khoảng SARGable (>= và <), chỉ số type cải thiện thành range (hoặc ref). Nhờ đó, MySQL chỉ truy cập trực tiếp vào cây chỉ mục để lấy đúng tập dữ liệu cần thiết. Chỉ số rows giảm mạnh từ 5.000.000 xuống còn vài nghìn dòng (chỉ bao gồm các giao dịch phát sinh trong tháng 6/2026).
+
+Sự thay đổi này cắt giảm hơn 99.9% lượng dữ liệu cần kiểm tra, đưa thời gian thực thi từ vài chục giây xuống dưới 10ms và loại bỏ hoàn toàn nguy cơ treo hệ thống.
