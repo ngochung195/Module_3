@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.navbar {
+    background-color: #242424;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    height: 50px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-left .logo {
+    color: #9d9d9d;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.nav-item {
+    color: #9d9d9d;
+    text-decoration: none;
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.nav-item:hover {
+    color: #fff;
+}
+
+.nav-item.active {
+    background-color: #000000;
+    color: #fff;
+}
+
+.nav-right .login-btn {
+    color: #9d9d9d;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-right .login-btn:hover {
+    color: #fff;
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar-left {
+    width: 15%;
+    background-color: #f1f1f1;
+    padding: 20px 15px;
+}
+
+.sidebar-left ul {
+    list-style: none;
+}
+
+.sidebar-left ul li {
+    margin-bottom: 12px;
+}
+
+.sidebar-left ul li a {
+    color: #337ab7;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.sidebar-left ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    width: 70%;
+    background-color: #ffffff;
+    padding: 25px 30px;
+    line-height: 1.5;
+}
+
+.content h1 {
+    font-size: 32px;
+    font-weight: normal;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.content h2 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.content p {
+    color: #333;
+    font-size: 14px;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.sidebar-right {
+    width: 15%;
+    background-color: #f1f1f1;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ads-box {
+    background-color: #f7f7f7;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    font-size: 14px;
+}
+
+.footer {
+    background-color: #555555;
+    color: #ffffff;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .sidebar-left,
+    .content,
+    .sidebar-right {
+        width: 100%;
+    }
+}
