@@ -1,0 +1,3 @@
+CSS Grid là layout 2 chiều (2D): Cho phép kiểm soát đồng thời cả cột (ngang) và hàng (dọc). Bạn định hình trước khung khung tổng thể (dashboard, trang tin tức...), sau đó đưa các khối phần tử vào đúng vị trí. Nó hoạt động theo tư duy Layout-first (có khung trước, nhét nội dung sau).
+
+Flexbox là layout 1 chiều (1D): Chỉ xử lý phần tử theo một trục (ngang hoặc dọc). Nó tự co giãn, căn chỉnh linh hoạt dựa trên kích thước nội dung thực tế bên trong. Flexbox hoạt động theo tư duy Content-first (nội dung quyết định kích thước), hoàn hảo cho các component nhỏ như Navbar, Card, Group Button hay Item list.
