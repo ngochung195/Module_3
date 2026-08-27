@@ -1,0 +1,4 @@
+com\codegym\model\Product.class
+com\codegym\controller\ProductServlet.class
+com\codegym\service\ProductService.class
+com\codegym\service\ProductServiceImpl.class
