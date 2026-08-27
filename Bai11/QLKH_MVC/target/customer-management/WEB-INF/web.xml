@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>Customer Management MVC</display-name>
+
+    <!-- ============================================================
+         Servlet: CustomerServlet
+         Xử lý tất cả các yêu cầu HTTP liên quan đến quản lý khách hàng.
+         ============================================================ -->
+    <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>com.codegym.controller.CustomerServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/customers</url-pattern>
+    </servlet-mapping>
+
+    <!-- ============================================================
+         Trang lỗi tuỳ chỉnh
+         ============================================================ -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error-404.jsp</location>
+    </error-page>
+
+    <!-- ============================================================
+         Cấu hình trang chào mừng mặc định
+         ============================================================ -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
