@@ -53,9 +53,20 @@
 
                 .btn-add {
                     background-color: #27ae60;
-                    margin-left: 10%;
-                    display: inline-block;
-                    margin-bottom: 15px;
+                }
+
+                .btn-sort {
+                    background-color: #8e44ad;
+                }
+
+                .btn-search {
+                    background-color: #f39c12;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                .btn-reset {
+                    background-color: #7f8c8d;
                 }
 
                 .btn-edit {
@@ -66,12 +77,35 @@
                 .btn-delete {
                     background-color: #c0392b;
                 }
+
+                .action-bar {
+                    width: 80%;
+                    margin: 0 auto 15px auto;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
             </style>
         </head>
 
         <body>
             <h2>Danh Sách Người Dùng (Users)</h2>
-            <a href="${pageContext.request.contextPath}/users?action=create" class="btn btn-add">Thêm mới User</a>
+            <div class="action-bar">
+                <div>
+                    <a href="${pageContext.request.contextPath}/users?action=create" class="btn btn-add">Thêm mới User</a>
+                    <a href="${pageContext.request.contextPath}/users?action=sort" class="btn btn-sort">Sắp xếp theo tên</a>
+                </div>
+                <form action="${pageContext.request.contextPath}/users" method="get" style="display: flex; gap: 8px; align-items: center;">
+                    <input type="hidden" name="action" value="search" />
+                    <input type="text" name="country" placeholder="Nhập quốc gia..." value="<c:out value='${requestScope.searchCountry}'/>" style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px;" />
+                    <button type="submit" class="btn btn-search">Tìm kiếm</button>
+                    <c:if test="${not empty requestScope.searchCountry}">
+                        <a href="${pageContext.request.contextPath}/users" class="btn btn-reset">Đặt lại</a>
+                    </c:if>
+                </form>
+            </div>
             <table>
                 <tr>
                     <th>ID</th>
