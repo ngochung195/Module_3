@@ -29,4 +29,8 @@ public interface IUserDAO {
     public List<User> selectUsersByCountry(String country);
 
     public List<User> selectAllUsersSortedByName();
+
+    public User getUserById(int id);
+
+    public void insertUserStore(User user) throws SQLException;
 }
