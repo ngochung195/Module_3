@@ -38,4 +38,6 @@ public interface IUserDAO {
 
     public void insertUpdateWithoutTransaction() throws SQLException;
 
+    public void insertUpdateUseTransaction() throws SQLException;
+
 }

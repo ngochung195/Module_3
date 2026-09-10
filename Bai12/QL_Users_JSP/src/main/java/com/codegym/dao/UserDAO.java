@@ -287,39 +287,91 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-public void insertUpdateWithoutTransaction() {
-    try (Connection conn = getConnection();
-         Statement statement = conn.createStatement();
-         PreparedStatement psInsert = conn.prepareStatement(SQL_INSERT);
-         PreparedStatement psUpdate = conn.prepareStatement(SQL_UPDATE)) { 
-         
-        // 1. Xoá bảng cũ và tạo lại bảng mới để làm sạch dữ liệu mỗi lần test
-        statement.execute(SQL_TABLE_DROP);
-        statement.execute(SQL_TABLE_CREATE);
-         
-        // 2. Chạy tập lệnh Insert (Chèn 2 nhân viên)
-        psInsert.setString(1, "Quynh");
-        psInsert.setBigDecimal(2, new BigDecimal(10));
-        psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-        psInsert.execute(); 
-        
-        psInsert.setString(1, "Ngan");
-        psInsert.setBigDecimal(2, new BigDecimal(20));
-        psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-        psInsert.execute();
+    public void insertUpdateWithoutTransaction() {
+        try (Connection conn = getConnection();
+                Statement statement = conn.createStatement();
+                PreparedStatement psInsert = conn.prepareStatement(SQL_INSERT);
+                PreparedStatement psUpdate = conn.prepareStatement(SQL_UPDATE)) {
 
-        // 3. Chạy tập lệnh Update (Cố tình tạo lỗi)
-        // Dòng bên dưới sẽ gây lỗi vì tham số index 1 chưa được gán giá trị
-        psUpdate.setBigDecimal(2, new BigDecimal(999.99));
-        // Lệnh đúng ra phải là: psUpdate.setBigDecimal(1, new BigDecimal(999.99));
-        psUpdate.setString(2, "Quynh");
-        
-        // Lệnh execute này sẽ ném ra Exception
-        psUpdate.execute();
-        
-    } catch (Exception e) {
-        System.out.println("Đã bắt được lỗi trong quá trình thực thi SQL:");
-        e.printStackTrace();
+            // 1. Xoá bảng cũ và tạo lại bảng mới để làm sạch dữ liệu mỗi lần test
+            statement.execute(SQL_TABLE_DROP);
+            statement.execute(SQL_TABLE_CREATE);
+
+            // 2. Chạy tập lệnh Insert (Chèn 2 nhân viên)
+            psInsert.setString(1, "Quynh");
+            psInsert.setBigDecimal(2, new BigDecimal(10));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            psInsert.setString(1, "Ngan");
+            psInsert.setBigDecimal(2, new BigDecimal(20));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            // 3. Chạy tập lệnh Update (Cố tình tạo lỗi)
+            // Dòng bên dưới sẽ gây lỗi vì tham số index 1 chưa được gán giá trị
+            psUpdate.setBigDecimal(2, new BigDecimal(999.99));
+            // Lệnh đúng ra phải là: psUpdate.setBigDecimal(1, new BigDecimal(999.99));
+            psUpdate.setString(2, "Quynh");
+
+            // Lệnh execute này sẽ ném ra Exception
+            psUpdate.execute();
+
+        } catch (Exception e) {
+            System.out.println("Đã bắt được lỗi trong quá trình thực thi SQL:");
+            e.printStackTrace();
+        }
     }
-}
+
+    @Override
+    public void insertUpdateUseTransaction() {
+        try (Connection conn = getConnection();
+                Statement statement = conn.createStatement();
+                PreparedStatement psInsert = conn.prepareStatement(SQL_INSERT);
+                PreparedStatement psUpdate = conn.prepareStatement(SQL_UPDATE)) {
+
+            statement.execute(SQL_TABLE_DROP);
+            statement.execute(SQL_TABLE_CREATE);
+
+            // ==========================================
+            // 1. BẮT ĐẦU TRANSACTION BLOCK
+            // Tắt chế độ lưu tự động (mặc định là true)
+            // ==========================================
+            conn.setAutoCommit(false);
+
+            // 2. Chạy danh sách lệnh Insert
+            psInsert.setString(1, "Quynh");
+            psInsert.setBigDecimal(2, new BigDecimal(10));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            psInsert.setString(1, "Ngan");
+            psInsert.setBigDecimal(2, new BigDecimal(20));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            // 3. Chạy lệnh Update (Cố tình tạo lỗi để test)
+            // Dòng bên dưới sẽ gây lỗi: org.postgresql.util.PSQLException: No value
+            // specified...
+            psUpdate.setBigDecimal(1, new BigDecimal(999.99));
+            // Đáng lẽ phải là: psUpdate.setBigDecimal(1, new BigDecimal(999.99));
+
+            psUpdate.setString(2, "Quynh");
+            psUpdate.execute();
+
+            // ==========================================
+            // 4. KẾT THÚC TRANSACTION BLOCK
+            // Nếu code chạy trót lọt đến đây, tiến hành ghi dữ liệu
+            // ==========================================
+            conn.commit();
+
+            // Thói quen tốt: Bật lại chế độ auto-commit về mặc định
+            conn.setAutoCommit(true);
+
+        } catch (Exception e) {
+            System.out.println("Lỗi xảy ra, Transaction sẽ tự động huỷ bỏ (rollback) khi đóng kết nối!");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
