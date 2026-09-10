@@ -135,12 +135,25 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
-        User newUser = new User(name, email, country);
-        userDAO.insertUserStore(newUser);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
-        request.setAttribute("message", "Đã thêm mới User thành công!");
-        dispatcher.forward(request, response);
+        // Nhận danh sách quyền hạn (permissions) được check từ form
+        String[] permissionsStr = request.getParameterValues("permissions");
+        int[] permissions = null;
+
+        if (permissionsStr != null) {
+            permissions = new int[permissionsStr.length];
+            for (int i = 0; i < permissionsStr.length; i++) {
+                permissions[i] = Integer.parseInt(permissionsStr[i]);
+            }
+        }
+
+        User newUser = new User(name, email, country);
+
+        // Gọi phương thức mới sử dụng Transaction
+        userDAO.addUserTransaction(newUser, permissions);
+
+        // Quay lại trang danh sách sau khi lưu thành công
+        response.sendRedirect("users");
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
