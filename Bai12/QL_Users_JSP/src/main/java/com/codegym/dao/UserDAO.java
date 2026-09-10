@@ -217,6 +217,54 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
+    public List<User> selectAllUsersStore() {
+        List<User> users = new ArrayList<>();
+        String query = "{CALL get_all_users()}";
+        try (Connection connection = getConnection();
+                CallableStatement callableStatement = connection.prepareCall(query)) {
+            ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                users.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    @Override
+    public boolean updateUserStore(User user) throws Exception {
+        boolean rowUpdated;
+        String query = "{CALL update_user(?, ?, ?, ?)}";
+        try (Connection connection = getConnection();
+                CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setInt(1, user.getId());
+            callableStatement.setString(2, user.getName());
+            callableStatement.setString(3, user.getEmail());
+            callableStatement.setString(4, user.getCountry());
+            rowUpdated = callableStatement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    @Override
+    public boolean deleteUserStore(int id) throws Exception {
+        boolean rowDeleted;
+        String query = "{CALL delete_user(?)}";
+        try (Connection connection = getConnection();
+                CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setInt(1, id);
+            rowDeleted = callableStatement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
+
+
+    @Override
     public void addUserTransaction(User user, int[] permissionIds) throws SQLException {
         Connection connection = null;
         PreparedStatement pstmtUser = null;
