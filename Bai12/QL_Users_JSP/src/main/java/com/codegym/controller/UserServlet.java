@@ -19,7 +19,7 @@ import java.util.List;
  * Tiếp nhận và xử lý các yêu cầu HTTP (GET, POST) từ Client, tương tác với
  * UserDAO
  * và điều hướng dữ liệu đến các trang JSP tương ứng.
- * 
+ *
  * NGƯỜI HỌC TỰ THỰC HÀNH:
  * - Khởi tạo đối tượng UserDAO.
  * - Triển khai doGet(): Đọc tham số action (create, edit, delete, ...) để gọi
@@ -62,6 +62,9 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "sort":
                     sortByName(request, response);
+                    break;
+                case "test-without-tran":
+                    testWithoutTran(request, response);
                     break;
                 default:
                     listUser(request, response);
@@ -192,5 +195,11 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        // Gọi phương thức cố tình sinh lỗi
+        userDAO.insertUpdateWithoutTransaction();
+        System.out.println("Đã chạy xong hàm testWithoutTran. Hãy kiểm tra database!");
     }
 }
