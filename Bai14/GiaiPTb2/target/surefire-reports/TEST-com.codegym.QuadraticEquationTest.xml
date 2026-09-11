@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.codegym.QuadraticEquationTest" time="0.049" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\CodeGym\Module3\Bai14\GiaiPTb2\target\test-classes;D:\CodeGym\Module3\Bai14\GiaiPTb2\target\classes;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Asia/Saigon"/>
+    <property name="user.country.format" value="VN"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="D:\Application\Java\jdk_17\bin"/>
+    <property name="sun.java.command" value="C:\Users\MHC\AppData\Local\Temp\surefire14742522177913957772\surefirebooter-20260911135231466_3.jar C:\Users\MHC\AppData\Local\Temp\surefire14742522177913957772 2026-09-11T13-52-22_635-jvmRun1 surefire-20260911135231466_1tmp surefire_0-20260911135231466_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\CodeGym\Module3\Bai14\GiaiPTb2\target\test-classes;D:\CodeGym\Module3\Bai14\GiaiPTb2\target\classes;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;D:\Application\Java\TravelGo_maven\maven-repo\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\MHC"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-10-21"/>
+    <property name="java.home" value="D:\Application\Java\jdk_17"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\CodeGym\Module3\Bai14\GiaiPTb2"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\MHC\AppData\Local\Temp\surefire14742522177913957772\surefirebooter-20260911135231466_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.17+10"/>
+    <property name="user.name" value="MHC"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-17.0.17+10"/>
+    <property name="localRepository" value="D:\Application\Java\TravelGo_maven\maven-repo"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\MHC\AppData\Local\Temp\"/>
+    <property name="java.version" value="17.0.17"/>
+    <property name="user.dir" value="D:\CodeGym\Module3\Bai14\GiaiPTb2"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.language.format" value="vi"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="D:\Application\Java\jdk_17\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/MHC/.gemini/antigravity-ide/bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\Application\Git\Git\cmd;D:\Application\Java\jdk_17\bin;D:\Application\Nodejs;C:\Program Files (x86)\WiX Toolset v3.14\bin;D:\Application\Maven\apache-maven-3.9.16-bin\apache-maven-3.9.16\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\Application\Git\Git\cmd;D:\Application\Java\jdk_17\bin;D:\Application\Nodejs;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\MHC\AppData\Local\Microsoft\WindowsApps;D:\Application\VisualStudio\Microsoft VS Code\bin;C:\Users\MHC\AppData\Roaming\npm;D:\Application\Antigravity\Antigravity IDE\Antigravity IDE\bin;D:\maven\bin;C:\Users\MHC\AppData\Local\Programs\Antigravity IDE\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="17.0.17+10"/>
+    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="testOneDoubleRoot" classname="com.codegym.QuadraticEquationTest" time="0.014"/>
+  <testcase name="testLinearEquation" classname="com.codegym.QuadraticEquationTest" time="0.007"/>
+  <testcase name="testNoRealRoots" classname="com.codegym.QuadraticEquationTest" time="0.004"/>
+  <testcase name="testTwoDistinctRoots" classname="com.codegym.QuadraticEquationTest" time="0.0"/>
+</testsuite>
