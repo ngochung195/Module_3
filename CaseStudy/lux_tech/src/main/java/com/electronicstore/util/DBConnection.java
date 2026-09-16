@@ -23,28 +23,39 @@ public class DBConnection {
             // 1. Load MySQL Driver
             Class.forName(driver);
 
-            // 2. Kiểm tra Environment Variables trước (dành cho Docker / Cloud / Render)
+            // 2. Kiểm tra Environment Variables (Hỗ trợ đa nền tảng: Docker, Render, Railway, Aiven)
             String envHost = getEnvOrProperty("DB_HOST");
+            if (envHost == null) envHost = getEnvOrProperty("MYSQLHOST");
+
             String envPort = getEnvOrProperty("DB_PORT");
+            if (envPort == null) envPort = getEnvOrProperty("MYSQLPORT");
+
             String envDbName = getEnvOrProperty("DB_NAME");
+            if (envDbName == null) envDbName = getEnvOrProperty("MYSQLDATABASE");
+
             String envUser = getEnvOrProperty("DB_USERNAME");
-            if (envUser == null) {
-                envUser = getEnvOrProperty("DB_USER");
-            }
+            if (envUser == null) envUser = getEnvOrProperty("DB_USER");
+            if (envUser == null) envUser = getEnvOrProperty("MYSQLUSER");
+
             String envPass = getEnvOrProperty("DB_PASSWORD");
-            if (envPass == null) {
-                envPass = getEnvOrProperty("DB_PASS");
-            }
+            if (envPass == null) envPass = getEnvOrProperty("DB_PASS");
+            if (envPass == null) envPass = getEnvOrProperty("MYSQLPASSWORD");
+
             String envUrl = getEnvOrProperty("DB_URL");
-            if (envUrl == null) {
-                envUrl = getEnvOrProperty("MYSQL_URL");
-            }
+            if (envUrl == null) envUrl = getEnvOrProperty("MYSQL_URL");
+            if (envUrl == null) envUrl = getEnvOrProperty("MYSQL_PUBLIC_URL");
+            if (envUrl == null) envUrl = getEnvOrProperty("DATABASE_URL");
 
             if (envUrl != null && !envUrl.trim().isEmpty()) {
-                url = envUrl.trim();
+                String cleanUrl = envUrl.trim();
+                // Tự động chuyển đổi format mysql:// sang jdbc:mysql:// nếu cần
+                if (cleanUrl.startsWith("mysql://")) {
+                    cleanUrl = "jdbc:" + cleanUrl;
+                }
+                url = cleanUrl;
                 username = envUser;
                 password = envPass != null ? envPass : "";
-                System.out.println("[DBConnection] Khởi tạo kết nối từ biến môi trường DB_URL/MYSQL_URL.");
+                System.out.println("[DBConnection] Khởi tạo kết nối từ biến môi trường URL: " + url.replaceAll("(?<=://)[^@]+@", "***:***@"));
                 return;
             }
 
