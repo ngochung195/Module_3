@@ -17,11 +17,9 @@ LuxTech là nền tảng thương mại điện tử chuyên cung cấp thiết 
 ## 2. Hướng Dẫn Chạy Cục Bộ (Run Locally)
 
 ### Bước 1: Khởi tạo Database
-1. Mở MySQL Server và chạy script tạo bảng:
+1. Mở MySQL Server và chạy script tạo bảng & nạp dữ liệu:
    ```sql
-   -- Chạy file database/schema.sql
-   -- Chạy file database/data.sql
-   -- Chạy file database/add_products_phase11.sql
+   -- Chạy file duy nhất: database/schema.sql (All-in-One: cấu trúc + dữ liệu mẫu đầy đủ)
    ```
 2. Cấu hình thông số kết nối trong file `src/main/resources/db.properties` hoặc thiết lập biến môi trường.
 

@@ -111,7 +111,7 @@
                         <% if (!dbConnected && dbError != null) { %>
                             <div class="alert alert-warning mt-2 small mb-0">
                                 <strong>Lỗi kết nối MySQL:</strong> <%= dbError %><br/>
-                                <em>Lưu ý: Vui lòng khởi chạy MySQL service và chạy script <code>database/schema.sql</code> & <code>database/data.sql</code>.</em>
+                                <em>Lưu ý: Vui lòng khởi chạy MySQL service và chạy script <code>database/schema.sql</code>.</em>
                             </div>
                         <% } %>
                     </div>
