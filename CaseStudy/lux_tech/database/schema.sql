@@ -3,10 +3,6 @@
 -- Hệ thống quản trị và bán hàng thiết bị công nghệ LuxTech
 -- =========================================================================
 
--- 1. Tạo Database
-CREATE DATABASE IF NOT EXISTS electronic_store CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE electronic_store;
-
 -- Tắt kiểm tra khóa ngoại tạm thời để xóa và tạo bảng an toàn tuyệt đối
 SET FOREIGN_KEY_CHECKS = 0;
 
