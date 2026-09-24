@@ -45,7 +45,7 @@ public class OrderDAO {
         String sql = "SELECT o.id, o.customer_id, c.name AS customer_name, " +
                      "o.order_date, o.total, o.status, o.payment_method, o.payment_status, o.source " +
                      "FROM orders o JOIN customers c ON o.customer_id = c.id " +
-                     "ORDER BY o.id DESC";
+                     "ORDER BY o.id ASC";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -95,7 +95,7 @@ public class OrderDAO {
                      "o.order_date, o.total, o.status, o.payment_method, o.payment_status, o.source " +
                      "FROM orders o JOIN customers c ON o.customer_id = c.id " +
                      "WHERE o.customer_id = ? " +
-                     "ORDER BY o.id DESC";
+                     "ORDER BY o.id ASC";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -220,7 +220,7 @@ public class OrderDAO {
         if (hasSource) {
             sql.append("AND o.source = ? ");
         }
-        sql.append("ORDER BY o.id DESC");
+        sql.append("ORDER BY o.id ASC");
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql.toString())) {

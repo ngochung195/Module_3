@@ -67,11 +67,12 @@ public class DBConnection {
 
                 StringBuilder urlBuilder = new StringBuilder("jdbc:mysql://");
                 urlBuilder.append(envHost.trim()).append(":").append(port).append("/").append(envDbName.trim());
-                urlBuilder.append("?useSSL=").append(useSsl);
                 if (useSsl) {
-                    urlBuilder.append("&sslMode=PREFERRED");
+                    urlBuilder.append("?sslMode=REQUIRED");
+                } else {
+                    urlBuilder.append("?sslMode=DISABLED");
                 }
-                urlBuilder.append("&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh&useUnicode=true&characterEncoding=UTF-8");
+                urlBuilder.append("&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh&useUnicode=true&characterEncoding=UTF-8&connectTimeout=10000&socketTimeout=30000");
 
                 url = urlBuilder.toString();
                 username = envUser != null ? envUser.trim() : "root";
@@ -142,11 +143,12 @@ public class DBConnection {
 
             StringBuilder jdbcUrl = new StringBuilder("jdbc:mysql://");
             jdbcUrl.append(host).append(":").append(port).append("/").append(dbName);
-            jdbcUrl.append("?useSSL=").append(useSsl);
             if (useSsl) {
-                jdbcUrl.append("&sslMode=PREFERRED");
+                jdbcUrl.append("?sslMode=REQUIRED");
+            } else {
+                jdbcUrl.append("?sslMode=DISABLED");
             }
-            jdbcUrl.append("&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh&useUnicode=true&characterEncoding=UTF-8");
+            jdbcUrl.append("&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh&useUnicode=true&characterEncoding=UTF-8&connectTimeout=10000&socketTimeout=30000");
 
             url = jdbcUrl.toString();
             username = (parsedUser != null && !parsedUser.isEmpty()) ? parsedUser : fallbackUser;

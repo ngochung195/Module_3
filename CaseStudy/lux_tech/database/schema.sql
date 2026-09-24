@@ -178,112 +178,104 @@ INSERT INTO products (id, name, price, quantity, category_id, image) VALUES
 (45, 'Chuột Logitech MX Master 3S', 2490000.00, 18, 6, 'logitech-mx3s.png'),
 (46, 'Chuột Gaming không dây Logitech G Pro X Superlight', 2990000.00, 16, 6, 'logitech-gprox.jpg');
 
--- 5. Thêm Đơn hàng mẫu
-INSERT INTO orders (id, customer_id, order_date, total, status, source) VALUES
-(1, 1, NOW(), 40980000.00, 'COMPLETED', 'STAFF'),
-(2, 2, NOW(), 35500000.00, 'CONFIRMED', 'ONLINE'),
-(3, 3, NOW(), 5990000.00, 'PENDING', 'ONLINE');
+-- 5. Thêm Đơn hàng mẫu (Tổng cộng 23 đơn hàng đa dạng trạng thái, khách hàng, phương thức thanh toán)
+INSERT INTO orders (id, customer_id, order_date, total, status, payment_method, payment_status, source) VALUES
+(1, 1, '2026-03-01 10:15:00', 40980000.00, 'COMPLETED', 'VNPAY', 'PAID', 'STAFF'),
+(2, 2, '2026-03-02 14:30:00', 35500000.00, 'CONFIRMED', 'COD', 'UNPAID', 'ONLINE'),
+(3, 3, '2026-03-05 09:00:00', 5990000.00, 'PENDING', 'COD', 'UNPAID', 'ONLINE'),
+(4, 1, '2026-03-10 09:15:00', 26270000.00, 'COMPLETED', 'VNPAY', 'PAID', 'ONLINE'),
+(5, 2, '2026-03-11 14:20:00', 26980000.00, 'COMPLETED', 'BANKING', 'PAID', 'ONLINE'),
+(6, 3, '2026-03-12 16:45:00', 26770000.00, 'CONFIRMED', 'COD', 'UNPAID', 'ONLINE'),
+(7, 4, '2026-03-13 11:30:00', 9570000.00, 'PAID', 'VNPAY', 'PAID', 'ONLINE'),
+(8, 5, '2026-03-14 08:50:00', 9420000.00, 'COMPLETED', 'COD', 'PAID', 'STAFF'),
+(9, 1, '2026-03-15 10:05:00', 2440000.00, 'PENDING', 'COD', 'UNPAID', 'ONLINE'),
+(10, 2, '2026-03-16 13:10:00', 39670000.00, 'CONFIRMED', 'VNPAY', 'PAID', 'ONLINE'),
+(11, 3, '2026-03-17 15:25:00', 14370000.00, 'COMPLETED', 'BANKING', 'PAID', 'ONLINE'),
+(12, 4, '2026-03-18 09:40:00', 3440000.00, 'CANCELLED', 'COD', 'UNPAID', 'ONLINE'),
+(13, 5, '2026-03-18 17:15:00', 41990000.00, 'CONFIRMED', 'VNPAY', 'PAID', 'ONLINE'),
+(14, 1, '2026-03-19 11:00:00', 6880000.00, 'COMPLETED', 'VNPAY', 'PAID', 'ONLINE'),
+(15, 2, '2026-03-19 14:35:00', 14930000.00, 'COMPLETED', 'COD', 'PAID', 'ONLINE'),
+(16, 3, '2026-03-20 10:20:00', 24100000.00, 'PAID', 'VNPAY', 'PAID', 'ONLINE'),
+(17, 4, '2026-03-21 08:30:00', 16980000.00, 'CONFIRMED', 'BANKING', 'PAID', 'ONLINE'),
+(18, 5, '2026-03-21 16:00:00', 18670000.00, 'COMPLETED', 'COD', 'PAID', 'STAFF'),
+(19, 1, '2026-03-22 13:45:00', 6780000.00, 'PENDING', 'COD', 'UNPAID', 'ONLINE'),
+(20, 2, '2026-03-22 18:10:00', 2770000.00, 'COMPLETED', 'COD', 'PAID', 'ONLINE'),
+(21, 3, '2026-03-23 09:15:00', 10320000.00, 'COMPLETED', 'BANKING', 'PAID', 'STAFF'),
+(22, 4, '2026-03-23 15:50:00', 8180000.00, 'PAID', 'VNPAY', 'PAID', 'ONLINE'),
+(23, 5, '2026-03-24 08:00:00', 39670000.00, 'CONFIRMED', 'VNPAY', 'PAID', 'ONLINE');
 
 -- 6. Thêm Chi tiết đơn hàng
 INSERT INTO order_details (order_id, product_id, quantity, price) VALUES
 (1, 8, 1, 34990000.00),
 (1, 23, 1, 5990000.00),
 (2, 15, 1, 35500000.00),
-(3, 23, 1, 5990000.00);
-
--- 7. Thêm Tùy chọn màu sắc cho 46 sản phẩm
-INSERT INTO product_colors (product_id, name, hex_code, border_hex) VALUES
-(1, 'Đen', '#1e293b', NULL),
-(1, 'Xanh dương', '#1d4ed8', NULL),
-(1, 'Xanh lá', '#6ee7b7', '#a7f3d0'),
-
-(2, 'Xanh', '#3b82f6', NULL),
-(2, 'Vàng', '#facc15', '#fef08a'),
-(2, 'Đen', '#18181b', NULL),
-
-(3, 'Xanh', '#0284c7', NULL),
-(3, 'Đen', '#0f172a', NULL),
-(3, 'Tím', '#c084fc', NULL),
-
-(4, 'Xanh', '#99f6e4', '#ccfbf1'),
-(4, 'Tím', '#a855f7', NULL),
-(4, 'Xám', '#334155', NULL),
-
-(5, 'Xanh', '#0f172a', NULL),
-(5, 'Ánh Sao', '#f8fafc', '#cbd5e1'),
-(5, 'Hồng', '#fbcfe8', '#fce7f3'),
-
-(6, 'Xanh Dương', '#bfdbfe', '#dbeafe'),
-(6, 'Hồng Nhạt', '#fce7f3', '#fbcfe8'),
-(6, 'Đen Nhám', '#18181b', NULL),
-(6, 'Xanh Lá', '#dcfce7', '#bbf7d0'),
-
-(7, 'Xám Titan', '#6f7074', NULL),
-(7, 'Đen Titan', '#2c2c2e', NULL),
-(7, 'Tím Titan', '#595166', NULL),
-(7, 'Vàng Titan', '#e4d9bc', NULL),
-
-(8, 'Titan Sa Mạc', '#cda277', NULL),
-(8, 'Titan Tự Nhiên', '#9e9b94', NULL),
-(8, 'Titan Trắng', '#f4f3ed', '#d1d5db'),
-(8, 'Titan Đen', '#393836', NULL),
-
-(9, 'Bạc Ánh Kim', '#e2e8f0', '#cbd5e1'),
-(10, 'Xám Tro', '#64748b', NULL),
-(11, 'Bạc', '#f1f5f9', '#cbd5e1'),
-(12, 'Đen', '#09090b', NULL),
-(13, 'Xám', '#475569', NULL),
-(14, 'Xanh Thẫm', '#1e293b', NULL),
-(14, 'Ánh Vàng', '#fef08a', '#fef9c3'),
-(14, 'Xám', '#64748b', NULL),
-(15, 'Bạch Kim', '#dadbdc', '#cbd5e1'),
-(15, 'Than Chì', '#424446', NULL),
-(16, 'Đen', '#2e3033', NULL),
-(16, 'Bạc', '#e2e4e6', '#cbd5e1'),
-
-(17, 'Đen Nhám', '#18181b', NULL),
-(18, 'Đen', '#27272a', NULL),
-(19, 'Be Ánh Kim', '#fef3c7', '#fde68a'),
-(19, 'Xanh Dương', '#2563eb', NULL),
-(20, 'Trắng', '#ffffff', '#e2e8f0'),
-(21, 'Đen', '#1c1917', NULL),
-(21, 'Nâu', '#78350f', NULL),
-(22, 'Đen', '#09090b', NULL),
-(23, 'Trắng', '#ffffff', '#d1d5db'),
-(24, 'Đen Nhám', '#1f2022', NULL),
-(24, 'Bạc', '#dcd7ce', '#cbd5e1'),
-
-(25, 'Trắng', '#ffffff', '#e2e8f0'),
-(26, 'Đen', '#18181b', NULL),
-(27, 'Xám', '#475569', NULL),
-(28, 'Đen', '#262626', NULL),
-(28, 'Trắng', '#ffffff', '#d1d5db'),
-(29, 'Đen', '#181818', NULL),
-(29, 'Trắng', '#f8f9fa', '#d1d5db'),
-(30, 'Xanh', '#99f6e4', '#ccfbf1'),
-(30, 'Trắng', '#f8fafc', '#e2e8f0'),
-(31, 'Xám', '#334155', NULL),
-(32, 'Đen', '#0f172a', NULL),
-
-(33, 'Đen', '#1e293b', NULL),
-(34, 'Hồng', '#fbcfe8', '#fce7f3'),
-(34, 'Trắng', '#f8fafc', '#e2e8f0'),
-(35, 'Đen', '#18181b', NULL),
-(36, 'Xanh Tím', '#7c3aed', NULL),
-(37, 'Xám Carbon', '#374151', NULL),
-(38, 'Xanh', '#1e3a8a', NULL),
-(39, 'Đen', '#09090b', NULL),
-
-(40, 'Đen Nhám', '#18181b', NULL),
-(41, 'Xám Chống Ồn', '#475569', NULL),
-(42, 'Đen', '#09090b', NULL),
-(42, 'Trắng', '#ffffff', '#cbd5e1'),
-(43, 'Hồng', '#e9d5ff', '#f3e8ff'),
-(43, 'Xanh', '#d9f99d', '#ecfccb'),
-(44, 'Đen', '#09090b', NULL),
-(45, 'Xám', '#374151', NULL),
-(46, 'Trắng', '#ffffff', '#cbd5e1'),
-(46, 'Đen', '#09090b', NULL);
-
--- Bật lại kiểm tra khóa ngoại
-SET FOREIGN_KEY_CHECKS = 1;
+(3, 23, 1, 5990000.00),
+-- Đơn hàng 4
+(4, 6, 1, 18990000.00),
+(4, 23, 1, 5990000.00),
+(4, 29, 1, 1290000.00),
+-- Đơn hàng 5
+(5, 14, 1, 24490000.00),
+(5, 45, 1, 2490000.00),
+-- Đơn hàng 6
+(6, 12, 1, 19490000.00),
+(6, 22, 1, 4290000.00),
+(6, 46, 1, 2990000.00),
+-- Đơn hàng 7
+(7, 3, 1, 8490000.00),
+(7, 27, 1, 490000.00),
+(7, 18, 1, 590000.00),
+-- Đơn hàng 8
+(8, 2, 2, 4490000.00),
+(8, 25, 2, 220000.00),
+-- Đơn hàng 9
+(9, 37, 1, 1990000.00),
+(9, 43, 1, 450000.00),
+-- Đơn hàng 10
+(10, 7, 1, 29900000.00),
+(10, 24, 1, 7990000.00),
+(10, 30, 1, 1690000.00),
+-- Đơn hàng 11
+(11, 10, 1, 13490000.00),
+(11, 34, 1, 590000.00),
+(11, 41, 1, 290000.00),
+-- Đơn hàng 12
+(12, 1, 1, 2990000.00),
+(12, 17, 1, 450000.00),
+-- Đơn hàng 13
+(13, 16, 1, 41990000.00),
+-- Đơn hàng 14
+(14, 39, 1, 5690000.00),
+(14, 44, 1, 1190000.00),
+-- Đơn hàng 15
+(15, 4, 1, 12990000.00),
+(15, 20, 1, 1290000.00),
+(15, 28, 1, 650000.00),
+-- Đơn hàng 16
+(16, 13, 1, 22990000.00),
+(16, 35, 1, 690000.00),
+(16, 42, 1, 420000.00),
+-- Đơn hàng 17
+(17, 5, 1, 13490000.00),
+(17, 21, 1, 3490000.00),
+-- Đơn hàng 18
+(18, 11, 1, 16990000.00),
+(18, 36, 1, 1390000.00),
+(18, 41, 1, 290000.00),
+-- Đơn hàng 19
+(19, 32, 1, 3490000.00),
+(19, 38, 1, 3290000.00),
+-- Đơn hàng 20
+(20, 19, 2, 1190000.00),
+(20, 26, 1, 390000.00),
+-- Đơn hàng 21
+(21, 9, 1, 9990000.00),
+(21, 33, 1, 180000.00),
+(21, 40, 1, 150000.00),
+-- Đơn hàng 22
+(22, 31, 1, 2190000.00),
+(22, 23, 1, 5990000.00),
+-- Đơn hàng 23
+(23, 8, 1, 34990000.00),
+(23, 30, 1, 1690000.00),
+(23, 46, 1, 2990000.00);
